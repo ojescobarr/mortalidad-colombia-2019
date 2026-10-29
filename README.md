@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Análisis de Mortalidad en Colombia - 2019
 
 ## Introducción
@@ -98,3 +99,6 @@ streamlit run app.py --server.port $PORT --server.address 0.0.0.0
 CAPTURAS
 
 Permite identificar los departamentos con mayor concentración de defunciones registradas durante 2019.
+=======
+# mortalidad-colombia-2019
+>>>>>>> 82ac5d0b3e5de2fbb9daa431536f6546c5eedb17
