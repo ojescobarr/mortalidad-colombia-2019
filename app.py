@@ -25,7 +25,7 @@ st.title("📊 Análisis de Mortalidad en Colombia - 2019")
 st.markdown("""
 ### Aplicación web interactiva para el análisis de mortalidad en Colombia
 
-La aplicación permite explorar patrones geográficos, demográficos y epidemiológicos mediante visualizaciones interactivas desarrolladas con Plotly y Streamlit.
+La aplicación permite explorar patrones geográficos, demográficos y epidemiológicos mediante visualizaciones interactivas desarrolladas con Plotly y Streamlit basado en los microdatos de defunciones no fetales del DANE.
 
 
 **Autores:**
@@ -233,25 +233,25 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
     st.metric(
-        "Total Muertes",
+        "Total de Defunciones Registradas",
         f"{len(df_filtrado):,}"
     )
 
 with col2:
     st.metric(
-        "Departamentos",
+        "Departamentos con Defunciones",
         df_filtrado["DEPARTAMENTO"].nunique()
     )
 
 with col3:
     st.metric(
-        "Municipios",
+        "Municipios con Defunciones",
         df_filtrado["MUNICIPIO"].nunique()
     )
 
 with col4:
     st.metric(
-        "Promedio mensual",
+        "Promedio mensual de Defunciones",
         f"{len(df_filtrado)/12:,.0f}"
     )
 
@@ -481,10 +481,49 @@ with st.expander("Limitaciones del análisis"):
     """)
 
 # =====================================
+# Grafico4.1 Complementarios
+# =====================================
+st.markdown("---")
+st.subheader("🏥 Top 10 Municipios con Mayor Mortalidad")
+
+top_municipios = (
+    df_filtrado
+    .groupby("MUNICIPIO")
+    .size()
+    .reset_index(name="TOTAL")
+    .sort_values(
+        "TOTAL",
+        ascending=False
+    )
+    .head(10)
+)
+
+fig_top_municipios = px.bar(
+    top_municipios,
+    x="TOTAL",
+    y="MUNICIPIO",
+    orientation="h",
+    color="TOTAL",
+    color_continuous_scale="Reds"
+)
+
+fig_top_municipios.update_layout(
+    template="plotly_white",
+    xaxis_title="Defunciones",
+    yaxis_title="Municipio",
+    height=600
+)
+
+st.plotly_chart(
+    fig_top_municipios,
+    use_container_width=True
+)
+
+# =====================================
 # Grafico5 Tabla top 10 causas
 # =====================================
 st.markdown("---")
-st.subheader("🏥 Top 10 Causas de Muerte3")
+st.subheader("🏥 Top 10 Causas de Muerte")
 
 top_causas = (
     df_filtrado
@@ -690,3 +729,21 @@ st.plotly_chart(
     fig_hist,
     use_container_width=True
 )
+
+
+
+st.markdown("---")
+
+st.header("📋 Hallazgos Principales")
+
+st.success("""
+• La mortalidad se concentra principalmente en los departamentos con mayor población.
+
+• Los homicidios por arma de fuego presentan una concentración importante en pocos municipios destacando Cali.
+
+• La mayor proporción de defunciones se registra en grupos de edad avanzada.
+
+• Existen diferencias en la distribución de las defunciones según sexo y territorio.
+
+• Las enfermedades cardiovasculares, otras enfermedades crónicas y ataques armados aparecen entre las principales causas de muerte.
+""")
