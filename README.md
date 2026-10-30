@@ -98,6 +98,12 @@ Comando de inicio:
 streamlit run app.py --server.port $PORT --server.address 0.0.0.0
 
 
+De forma adicional se realizó el despliegue en Streamlit Community Cloud conectado directamente al repositorio de GitHub.
+
+Desplegando la app desde Python 3.12.
+
+Se adjuntan los 2 links para garantizar funcionalidad.
+
 ## Visualizaciones
 
 ### Filtros 
@@ -159,6 +165,8 @@ Se observó una concentración de defunciones en departamentos altamente poblado
 # URL Aplicación Desplegada
 
 https://mortalidad-colombia-2019-2ia7.onrender.com
+
+https://mortalidad-unisalle-oscar-mariana.streamlit.app/
 
 # URL GitHUB
 
