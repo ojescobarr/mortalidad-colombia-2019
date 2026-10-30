@@ -154,3 +154,12 @@ Se aprecia que hay un aumento de numero de defunciones a medida que avanzan los 
 El análisis permitió identificar patrones geográficos, demográficos y epidemiológicos de mortalidad en Colombia durante 2019.
 
 Se observó una concentración de defunciones en departamentos altamente poblados, predominio de muertes en edades avanzadas y diferencias territoriales en los homicidios por arma de fuego.
+
+
+# URL Aplicación Desplegada
+
+https://mortalidad-colombia-2019-2ia7.onrender.com
+
+# URL GitHUB
+
+https://github.com/ojescobarr/mortalidad-colombia-2019
